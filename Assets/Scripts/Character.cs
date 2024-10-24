@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class Character : NetworkBehaviour
 {
-    [SerializeField] float moveSpeed = 4;
+    [SerializeField] float moveSpeed = 10;
+    [SerializeField] float jumpPower = 5;
     [SerializeField] Transform sprites;
 
     Rigidbody2D rb;
@@ -11,7 +12,7 @@ public class Character : NetworkBehaviour
     float moveH, moveV;
     Vector2 movement;
 
-    int facingDirection;
+    int facingDirection = 1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,7 +26,12 @@ public class Character : NetworkBehaviour
         moveH = Input.GetAxisRaw("Horizontal");
         moveV = Input.GetAxisRaw("Vertical");
         movement = new Vector2(moveH, moveV).normalized;
-        rb.linearVelocity = movement;
+
+        rb.linearVelocityX = movement.x * moveSpeed;
+        if (movement.y > 0 && rb.linearVelocityY == 0)
+        {
+            rb.linearVelocityY = jumpPower;
+        }
 
         if(movement.x != 0)
         {
