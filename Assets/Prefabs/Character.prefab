@@ -132,6 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   moveSpeed: 4
+  jumpPower: 5
   sprites: {fileID: 6417000894691888053}
 --- !u!114 &9071121984416795613
 MonoBehaviour:
@@ -241,7 +242,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &6367723613878956694
 MonoBehaviour:
   m_ObjectHideFlags: 0

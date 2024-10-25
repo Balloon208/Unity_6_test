@@ -1,3 +1,4 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -32,11 +33,16 @@ public class Character : NetworkBehaviour
         {
             rb.linearVelocityY = jumpPower;
         }
+        if (Mathf.Abs(rb.linearVelocityY) < 1e-05f)
+        {
+            rb.linearVelocityY = 0;
+        }
 
-        if(movement.x != 0)
+        if (movement.x != 0)
         {
             facingDirection = movement.x > 0 ? 1 : -1;
         }
+
         sprites.localScale = new Vector2(facingDirection, 1); // change Direction
     }
 
